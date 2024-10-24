@@ -1,7 +1,7 @@
 import { component$ } from "@builder.io/qwik";
 import { routeLoader$ } from "@builder.io/qwik-city";
 import { Counter } from "~/components/counter/counter";
-import client from "../../tina/__generated__/client";
+import client from "../../../tina/__generated__/client";
 import { useTina, tinaField } from "~/hooks/use-tina";
 
 export const usePostData = routeLoader$(async () => {
@@ -18,9 +18,6 @@ export default component$(() => {
   return (
     <>
       <Counter />
-      <h1 data-tina-field={tinaField(data.value.post, "title")}>
-        {data.value.post.title}
-      </h1>
       <div>
         {data.value.post.blocks?.map((block, i) => {
           if (block?.__typename === "PostBlocksForm") {
@@ -35,7 +32,7 @@ export default component$(() => {
       <div>
         <pre>{JSON.stringify(data.value.post.body, null, 2)}</pre>
       </div>
-      <a href="/other-form">Other Form</a>
+      <a href="/">Back home!</a>
     </>
   );
 });
