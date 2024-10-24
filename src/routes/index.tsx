@@ -21,8 +21,16 @@ export default component$(() => {
       <h1 data-tina-field={tinaField(data.value.post, "title")}>
         {data.value.post.title}
       </h1>
-      <div data-tina-field={tinaField(data.value.post, "posted")}>
-        {data.value.post.posted}
+      <div>
+        {data.value.post.blocks?.map((block, i) => {
+          if (block?.__typename === "PostBlocksForm") {
+            return (
+              <div key={i} data-tina-field={tinaField(block?.form, "title")}>
+                {block.form?.title}
+              </div>
+            );
+          }
+        })}
       </div>
       <div>
         <pre>{JSON.stringify(data.value.post.body, null, 2)}</pre>

@@ -56,6 +56,64 @@ export default defineConfig({
             type: "datetime",
             name: "posted",
             label: "Date Posted",
+            // required: true,
+          },
+          {
+            type: "object",
+            name: "blocks",
+            list: true,
+            templates: [
+              {
+                name: "Form",
+                label: "Form",
+                fields: [
+                  {
+                    type: "reference",
+                    name: "form",
+                    collections: ["form"],
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            type: "rich-text",
+            name: "body",
+            label: "Body",
+            isBody: true,
+            templates: [
+              {
+                name: "Form",
+                label: "Form",
+                fields: [
+                  {
+                    type: "reference",
+                    name: "form",
+                    collections: ["form"],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        name: "form",
+        label: "Forms",
+        path: "content/forms",
+        format: "mdx",
+        defaultItem: () => {
+          return {
+            // When a new post is created the title field will be set to "New post"
+            title: "Jack testing default item",
+          };
+        },
+        fields: [
+          {
+            type: "string",
+            name: "title",
+            label: "Title",
+            isTitle: true,
             required: true,
           },
           {
